@@ -1,0 +1,8 @@
+#include "ft_printf.h"
+
+int	main(void)
+{
+	printf("hello\n%4.3d", 51231231);
+	// printf("%-4d\n", 5);
+	// printf("%-4d\n",50);
+}

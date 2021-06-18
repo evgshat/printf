@@ -1,0 +1,27 @@
+//%[флаги][ширина][.точность][размер]тип
+
+#include "ft_printf.h"
+
+int	ft_printf(char const *format, ...)
+{
+	va_list	args;
+	int		first_param;
+	double	second_param;
+
+	va_start(args, format);
+	first_param  = va_arg(args, int);
+	printf("%d\n", first_param);
+	second_param  = va_arg(args, double);
+	printf("%f\n", second_param);
+	va_end(args);
+	return (0);
+}
+
+int	main(void)
+{
+	const char	*format;
+
+	format = (char *) malloc (sizeof(char) * 5);
+	format = "123";
+	ft_printf(format, 44, 5.5, 3);
+}

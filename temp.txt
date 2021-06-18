@@ -1,0 +1,15 @@
+// %[флаги][ширина][.точность][размер]тип
+// cspdiuxX%
+
+#include "ft_printf.h"
+
+
+
+int	main(void)
+{
+	int		i_res;
+	char	*s_res;
+	i_res = 66;
+	s_res = ft_itoa(i_res);
+	write (1, s_res, 2);
+}
