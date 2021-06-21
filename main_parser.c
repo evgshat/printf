@@ -20,7 +20,7 @@ int	main()
 	int		res;
 
 	format = (char *)malloc(sizeof(char) * 2);
-	format = "hello%d";
+	format = "hello%4.3d";
 	res = errors(format);
 	pre_main(format, 66);
 	printf("res = %d\n", res);
