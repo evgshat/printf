@@ -14,6 +14,9 @@ void			processor(const char *format, struct s_flags flags, va_list args);
 int				errors(const char *format);
 void			d(struct s_flags flags, va_list args);
 char			*ft_itoa(int n);
+void			c(struct s_flags flags, va_list args);
+void			s(struct s_flags flags, va_list args);
+size_t			ft_strlen (const char *str);
 
 struct s_flags
 {

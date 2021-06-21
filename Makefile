@@ -1,16 +1,26 @@
-SRCS := ft_memset.c \
-ft_bzero.c
+SRCS := parser_dot.c \
+parser_flags.c \
+parser_width.c \
+processor.c \
+errors.c \
+d.c \
+ft_itoa.c \
+c.c \
+s.c \
+ft_strlen.c
+
+
 
 OBJS = $(SRCS:.c=.o)
 
-NAME = libft.a
+NAME = libftprintf.a
 
 CFLAGS = -Werror -Wall -Wextra -c
 CC = gcc
 
 RM = rm -rf
 
-HEADER = -I libft.h
+HEADER = -I libft.h ft_printf.h
 
 .c.o:
 	$(CC) $(CFLAGS) $< ${HEADER} -o $(<:.c=.o)

@@ -7,9 +7,17 @@
 
 int	main(void)
 {
-	int		i_res;
+	int		i;
 	char	*s_res;
-	i_res = 66;
-	s_res = ft_itoa(i_res);
-	write (1, s_res, 2);
+	int		size;
+
+	i = 0;
+	size = 3;
+	// s_res = (char *) malloc(sizeof (char) * 3);
+	s_res = "abc";
+	while (i < size)
+	{
+		write (1, &s_res[i], 1);
+		i++;
+	}
 }

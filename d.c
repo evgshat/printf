@@ -1,3 +1,5 @@
+// надо добавить флаг минуса и нуль
+
 #include "ft_printf.h"
 
 void	d(struct s_flags flags, va_list args)

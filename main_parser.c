@@ -14,15 +14,15 @@ struct s_flags	pre_main(const char *format, ...)
 	return (res);
 }
 
-int	main()
+int	main(void)
 {
 	char	*format;
 	int		res;
 
 	format = (char *)malloc(sizeof(char) * 2);
-	format = "hello%4.3d";
+	format = "hello\n%4.3s";
 	res = errors(format);
-	pre_main(format, 66);
+	pre_main(format, "world");
 	printf("res = %d\n", res);
 	if (res == 0)
 		return (-1);
