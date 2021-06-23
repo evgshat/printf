@@ -13,7 +13,7 @@ void	from_d_to_x(int chislo)
 	{
 		c_ost = dictionary_from_d_to_x(chislo);
 		write (1, &c_ost, 1);
-		return;
+		return ;
 	}
 
 	if (chislo >= 16)

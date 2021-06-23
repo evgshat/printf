@@ -20,9 +20,9 @@ int	main(void)
 	int		res;
 
 	format = (char *)malloc(sizeof(char) * 2);
-	format = "hello\n%x";
+	format = "hello\n%5.6x";
 	res = errors(format);
-	pre_main(format, 10);
+	pre_main(format, 15438);
 	printf("res = %d\n", res);
 	if (res == 0)
 		return (-1);
