@@ -2,7 +2,7 @@
 
 int	main(void)
 {
-	printf("hello\n%2.3s", "world");
+	printf("hello\n%p", "d");
 	// printf("%-4d\n", 5);
 	// printf("%-4d\n",50);
 }

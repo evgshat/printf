@@ -8,6 +8,7 @@ struct s_flags	parser_flags(const char *format, va_list args)
 	int				i;
 	const char		*point_dot;
 
+	i = 0;
 	if (format[i] != '%')
 	{
 		while (format[i] != '%')

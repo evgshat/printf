@@ -10,13 +10,24 @@
 int				parser_dot(const char *point_dot, va_list args);
 struct s_flags	parser_flags(const char *format, va_list args);
 int				parser_width(va_list args);
-void			processor(const char *format, struct s_flags flags, va_list args);
+void			processor(const char *format, struct s_flags flags,
+					va_list args);
 int				errors(const char *format);
 void			d(struct s_flags flags, va_list args);
 char			*ft_itoa(int n);
 void			c(struct s_flags flags, va_list args);
 void			s(struct s_flags flags, va_list args);
 size_t			ft_strlen (const char *str);
+void			over_width(struct s_flags flags, int size, int a, int b);
+void			over_percision(struct s_flags flags, int size, int a, int b);
+char			*size_of_d(va_list args);
+void			write_for_s(struct s_flags flags, char	*s_res);
+void			x(struct s_flags flags, va_list args);
+void			from_d_to_x(int chislo);
+char			dictionary_from_d_to_x(int ost);
+void			from_d_to_big_x(int chislo);
+void			big_x(struct s_flags flags, va_list args);
+char			dictionary_from_d_to_big_x(int ost);
 
 struct s_flags
 {

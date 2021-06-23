@@ -7,9 +7,18 @@ d.c \
 ft_itoa.c \
 c.c \
 s.c \
-ft_strlen.c
-
-
+ft_strlen.c \
+big_x.c \
+dictionary_from_d_to_big_x.c \
+dictionary_from_d_to_x.c \
+from_d_to_big_x.c \
+from_d_to_x.c \
+ft_itoa.c \
+ft_strlen.c \
+over_percision.c \
+over_width.c \
+size_for_d.c \
+write_for_s.c
 
 OBJS = $(SRCS:.c=.o)
 
@@ -20,7 +29,7 @@ CC = gcc
 
 RM = rm -rf
 
-HEADER = -I libft.h ft_printf.h
+HEADER = -I ft_printf.h
 
 .c.o:
 	$(CC) $(CFLAGS) $< ${HEADER} -o $(<:.c=.o)

@@ -3,21 +3,18 @@
 
 #include "ft_printf.h"
 
-
-
 int	main(void)
 {
-	int		i;
-	char	*s_res;
-	int		size;
+	int		a;
+	int		*b;
 
-	i = 0;
-	size = 3;
-	// s_res = (char *) malloc(sizeof (char) * 3);
-	s_res = "abc";
-	while (i < size)
-	{
-		write (1, &s_res[i], 1);
-		i++;
-	}
+	a = 17;
+	b = &a;
+	printf ("%X", a);
+	// printf("\n Значение переменной а равно %d = %x шестн.", a,a);
+	// printf("\n%x", a);
+	// printf("\n Адрес переменной а равен %x шестн.", &a);
+	// printf("\n Данные по адесу указателя b равны %d = %x шестн.", *b, *b);
+	// printf("\n Значение указателя b равно %x шестн.", &b);
+	// printf("\n Адрес расположения указателя b равен %x шестн.", &b);
 }

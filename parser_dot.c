@@ -2,7 +2,6 @@
 
 int	parser_dot(const char *point_dot, va_list args)
 {
-	int	ind_arg;
 	int	res;
 
 	if (*point_dot >= '1' && *point_dot <= '9')
