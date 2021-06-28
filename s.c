@@ -9,31 +9,22 @@ void	s(struct s_flags flags, va_list args)
 	size = ft_strlen(s_res);
 	if (flags.flag_width == 0 && flags.flag_precision == 0)
 		write (1, s_res, size);
-	if (flags.flag_width != 0 && flags.flag_precision == 0)
+	if (flags.flag_width != 0)
 	{
-		if (size >= flags.value_width)
-			write (1, s_res, size);
 		if (size < flags.value_width)
 		{
-			over_width(flags, size, flags.value_width, size);
-			write (1, s_res, size);
+			if (flags.flag_minus != 0)
+			{
+				write(1, s_res, size);
+				over_width(flags, flags.value_width, size);
+			}
+			else
+			{
+				over_width(flags, flags.value_width, size);
+				write (1, s_res, size);
+			}
 		}
-	}
-	if (flags.flag_width == 0 && flags.flag_precision != 0)
-	{
-		if (size <= flags.value_precision)
+		if (size >= flags.value_width)
 			write (1, s_res, size);
-		if (size > flags.value_precision)
-			write_for_s(flags, s_res);
-	}
-	if (flags.flag_width != 0 && flags.flag_precision != 0)
-	{
-		if (flags.value_width <= flags.value_precision)
-			write_for_s(flags, s_res);
-		if (flags.value_width > flags.value_precision)
-		{
-			over_width(flags, size, flags.value_width, flags.value_precision);
-			write_for_s(flags, s_res);
-		}
 	}
 }

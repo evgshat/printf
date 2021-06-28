@@ -3,7 +3,7 @@
 
 #include "ft_printf.h"
 
-void	d(struct s_flags flags, va_list args)
+void	u(struct s_flags flags, va_list args)
 {
 	int		res;
 	int		res_copy;
@@ -19,7 +19,7 @@ void	d(struct s_flags flags, va_list args)
 		size++;
 	}
 	if (res < 0)
-		size++;
+		return ;
 	s_res = ft_itoa(res);
 	if (flags.flag_width == 0 && flags.flag_precision == 0)
 		write (1, s_res, size);

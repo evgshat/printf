@@ -26,4 +26,6 @@ void	processor(const char *format, struct s_flags flags, va_list args)
 		x(flags, args);
 	if (flags.type == 'X')
 		big_x(flags, args);
+	if (flags.type == 'p')
+		p(flags, args);
 }

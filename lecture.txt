@@ -116,3 +116,5 @@ putnbr(base) - можно решить побитной маской - так б
 
 флаг 0 - заполнение нулями в начале
  игнорируется если есть минус и игнорится для d, i, o, u, X и x, если указана точность;
+
+A zero `0' character indicating that zero-padding should be used rather than blank-padding.  A `-' overrides a `0' if both are used;
