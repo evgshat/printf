@@ -1,6 +1,3 @@
-// надо добавить флаг нуля
-// сравнить с i
-
 #include "ft_printf.h"
 
 void	d(struct s_flags flags, va_list args)
@@ -39,15 +36,23 @@ void	d(struct s_flags flags, va_list args)
 			write (1, s_res, size);
 		if (size < flags.value_width)
 		{
-			if (flags.flag_minus != 0)
+			if (flags.flag_minus == 0 && flags.flag_zero != 0)
 			{
+				over_width_zero(flags, flags.value_width, size);
 				write (1, s_res, size);
-				over_width(flags, flags.value_width, size);
 			}
 			else
 			{
-				over_width(flags, flags.value_width, size);
-				write (1, s_res, size);
+				if (flags.flag_minus != 0)
+				{
+					write (1, s_res, size);
+					over_width(flags, flags.value_width, size);
+				}
+				else
+				{
+					over_width(flags, flags.value_width, size);
+					write (1, s_res, size);
+				}
 			}
 		}
 	}

@@ -3,6 +3,7 @@ struct s_flags	pre_main(const char *format, ...)
 {
 	va_list				args;
 	struct s_flags		res;
+	int					proc_res;
 
 	va_start(args, format);
 	res = parser_flags(format, args);
@@ -10,7 +11,8 @@ struct s_flags	pre_main(const char *format, ...)
 	// 	res.type, res.flag_width,
 	// 	res.value_width, res.flag_minus, res.flag_zero,
 	// 	res.flag_precision, res.value_precision, res.flag_star);
-	processor(format, res, args);
+	proc_res = processor(format, res, args);
+	printf("\n%d", proc_res);
 	return (res);
 }
 
@@ -20,9 +22,9 @@ int	main(void)
 	int		res;
 
 	format = (char *)malloc(sizeof(char) * 2);
-	format = "%u";
+	format = "%c";
 	res = errors(format);
-	pre_main(format, -721);
+	pre_main(format, 'd');
 	// printf("res = %d\n", res);
 	if (res == 0)
 		return (-1);

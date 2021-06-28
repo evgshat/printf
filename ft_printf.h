@@ -5,17 +5,17 @@
 # include <stdlib.h>
 # include <limits.h>
 # include <stdio.h>
-# include <stdarg.h> // для va_start
+# include <stdarg.h>
 
 int				parser_dot(const char *point_dot, va_list args);
 struct s_flags	parser_flags(const char *format, va_list args);
 int				parser_width(va_list args);
-void			processor(const char *format, struct s_flags flags,
+int			processor(const char *format, struct s_flags flags,
 					va_list args);
 int				errors(const char *format);
 void			d(struct s_flags flags, va_list args);
 char			*ft_itoa(int n);
-void			c(struct s_flags flags, va_list args);
+int			c(struct s_flags flags, va_list args);
 void			s(struct s_flags flags, va_list args);
 size_t			ft_strlen (const char *str);
 void			over_width(struct s_flags flags, int a, int b);
@@ -32,7 +32,9 @@ int				size_of_x(int res);
 void			p(struct s_flags flags, va_list args);
 void			from_d_to_p(int chislo);
 void			u(struct s_flags flags, va_list args);
-
+char			*ft_itoa_unint(unsigned int n);
+void			over_width_zero(struct s_flags flags, int a, int b);
+int				sum(int size);
 struct s_flags
 {
 	char	type;

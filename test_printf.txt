@@ -2,7 +2,7 @@
 
 int	main(void)
 {
-	printf("%u", -1);
+	printf("%02c", 'd');
 	// printf("%-4d\n", 5);
 	// printf("%-4d\n",50);
 }

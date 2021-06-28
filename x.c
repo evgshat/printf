@@ -23,18 +23,26 @@ void	x(struct s_flags flags, va_list args)
 	if (flags.flag_width != 0 && flags.flag_precision == 0)
 	{
 		if (size >= flags.value_width)
-			from_d_to_x(chislo);
+			from_d_to_x (chislo);
 		if (size < flags.value_width)
 		{
-			if (flags.flag_minus != 0)
+			if (flags.flag_minus == 0 && flags.flag_zero != 0)
 			{
-				from_d_to_x(chislo);
-				over_width(flags, flags.value_width, size);
+				over_width_zero(flags, flags.value_width, size);
+				from_d_to_x (chislo);
 			}
 			else
 			{
-				over_width(flags, flags.value_width, size);
-				from_d_to_x(chislo);
+				if (flags.flag_minus != 0)
+				{
+					from_d_to_x (chislo);
+					over_width(flags, flags.value_width, size);
+				}
+				else
+				{
+					over_width(flags, flags.value_width, size);
+					from_d_to_x (chislo);
+				}
 			}
 		}
 	}
