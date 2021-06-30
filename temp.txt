@@ -3,21 +3,23 @@
 
 #include "ft_printf.h"
 
+int *f_1(int *a)
+{
+	*a = *a + 10;
+	return (a);
+}
+
 int	main(void)
 {
-	char ch = 'w';
-	char *point_ch;
-	char **point_point_ch;
-	intptr_t	*point_addres;
+	int	a;
 
-	point_ch = &ch;
-	point_addres = &ch;
-
-	// write (1, &ch, 10);
-	// write (1, "\n", 1);
-	printf("%p\n", &ch);
-	printf("%p\n", point_ch);
+	a = 10;
+	f_1(&a);
+	printf("%d", a);
+	return (a);
 }
+
+
 
 //int *point_b = &b;
 //если распечатаю значение указателя point_b, то оно равно 5

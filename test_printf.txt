@@ -2,7 +2,11 @@
 
 int	main(void)
 {
-	printf("%02c", 'd');
-	// printf("%-4d\n", 5);
-	// printf("%-4d\n",50);
+	// int	res;
+	// res = printf("Simple input test", 16);
+	// printf("\n%d", res);
+
+	// printf("%*s %*s", 1, 2, "aa", "bb");
+	// printf("%*s", 1, "aa");
+	printf("%321.3d", 1);
 }

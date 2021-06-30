@@ -8,33 +8,36 @@
 # include <stdarg.h>
 
 int				parser_dot(const char *point_dot, va_list args);
-struct s_flags	parser_flags(const char *format, va_list args);
+struct s_flags	parser_flags(const char **format, va_list args);
 int				parser_width(va_list args);
-int			processor(const char *format, struct s_flags flags,
-					va_list args);
+int				processor(const char *format, va_list args);
 int				errors(const char *format);
-void			d(struct s_flags flags, va_list args);
+int				d(struct s_flags flags, va_list args);
 char			*ft_itoa(int n);
-int			c(struct s_flags flags, va_list args);
-void			s(struct s_flags flags, va_list args);
+int				c(struct s_flags flags, va_list args);
+int				s(struct s_flags flags, va_list args);
 size_t			ft_strlen (const char *str);
-void			over_width(struct s_flags flags, int a, int b);
-void			over_percision(struct s_flags flags, int size, int a, int b);
+int				over_width(int a, int b);
+int				over_percision(int a, int b);
 int				size_of_d(int res);
 void			write_for_s(struct s_flags flags, char	*s_res);
-void			x(struct s_flags flags, va_list args);
-void			from_d_to_x(int chislo);
+int				x(struct s_flags flags, va_list args);
+int				from_d_to_x(int chislo);
 char			dictionary_from_d_to_x(int ost);
-void			from_d_to_big_x(int chislo);
-void			big_x(struct s_flags flags, va_list args);
+int				from_d_to_big_x(int chislo);
+int				big_x(struct s_flags flags, va_list args);
 char			dictionary_from_d_to_big_x(int ost);
 int				size_of_x(int res);
-void			p(struct s_flags flags, va_list args);
-void			from_d_to_p(int chislo);
-void			u(struct s_flags flags, va_list args);
+int				p(struct s_flags flags, va_list args);
+int				from_d_to_p(int chislo);
+int				u(struct s_flags flags, va_list args);
 char			*ft_itoa_unint(unsigned int n);
-void			over_width_zero(struct s_flags flags, int a, int b);
+int				over_width_zero(int a, int b);
 int				sum(int size);
+size_t			ft_strlen (const char *str);
+int				processor_type(struct s_flags flags, va_list args);
+int				ft_atoi(const char *string);
+
 struct s_flags
 {
 	char	type;

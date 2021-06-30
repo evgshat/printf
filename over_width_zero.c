@@ -1,6 +1,6 @@
 #include "ft_printf.h"
 
-void	over_width_zero(struct s_flags flags, int a, int b)
+int	over_width_zero(int a, int b)
 {
 	int		dif_arg;
 	int		i_dif_arg;
@@ -12,4 +12,5 @@ void	over_width_zero(struct s_flags flags, int a, int b)
 		write (1, "0", 1);
 		i_dif_arg++;
 	}
+	return (i_dif_arg);
 }

@@ -2,36 +2,47 @@
 
 #include "ft_printf.h"
 
-int	processor(const char *format, struct s_flags flags, va_list args)
+int	processor(const char *format, va_list args)
 {
-	int	i;
-	int	res;
+	int				i;
+	int				res;
+	struct s_flags	flags;
+	const char		*for_parsing;
+	int				flag_for_exit;
 
 	i = 0;
-	if (format[i] != '%')
+	res = 0;
+	flag_for_exit = 0;
+	for_parsing = format;
+	while (format[i] != '\0')
 	{
 		while (format[i] != '%')
 		{
-			write (1, &format[i], 1);
+			if (format[i] == '\0')
+			{
+				flag_for_exit = 1;
+				break ;
+			}
+			else
+			{
+				write (1, &format[i], 1);
+				i++;
+				res++;
+			}
+		}
+		if (flag_for_exit == 1)
+			break ;
+		flags = parser_flags(&for_parsing, args);
+		// printf("type = %c\nflag_width = %d\nvalue_width = %d\nflag_minus = %d\nflag_zero = %d\nflag_precision = %d\nvalue_precision = %d\nflag_star = %d\n",
+		// flags.type, flags.flag_width,
+		// flags.value_width, flags.flag_minus, flags.flag_zero,
+		// flags.flag_precision, flags.value_precision, flags.flag_star);
+		res = res + processor_type(flags, args);
+		while (format[i] != flags.type)
+		{
 			i++;
 		}
+		i++;
 	}
-	if (format[i+1] == '%')
-		write (1, "%", 1);
-	if (flags.type == 'd' || flags.type == 'i')
-		d(flags, args);
-	if (flags.type == 'c')
-		res = c(flags, args);
-	if (flags.type == 's')
-		s(flags, args);
-	if (flags.type == 'x')
-		x(flags, args);
-	if (flags.type == 'X')
-		big_x(flags, args);
-	if (flags.type == 'p')
-		p(flags, args);
-	if (flags.type == 'u')
-		u(flags, args);
-
 	return (res);
 }
