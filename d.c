@@ -103,48 +103,88 @@ int	d(struct s_flags flags, va_list args)
 	}
 	if (flags.flag_width != 0 && flags.flag_precision != 0) //width_percision
 	{
-		if (size >= flags.value_width && size >= flags.value_precision)
+		if (*s_res != '-') // логика для положительных чисел
 		{
-			write (1, s_res, size);
-			sum_d = sum(size);
-			return (sum_d + sum_over_width + sum_over_percision);
-		}
-		if (flags.value_precision >= flags.value_width)
-		{
-			sum_over_width = over_width(flags.value_precision, size);
-			write (1, s_res, size);
-			sum_d = sum(size);
-		}
-		if (flags.value_precision < flags.value_width)
-		{
-			if (flags.flag_minus == 0 && flags.flag_zero == 0)
+			if (flags.value_width <= size && flags.value_precision <= size)
 			{
-				if (*s_res == '-')
-				{
-					sum_over_width = over_width(flags.value_width, flags.value_precision);
-					write (1, "-", 1);
-					res++;
-					s_res++;
-					size--;
-					sum_over_percision = over_percision(flags.value_precision, size);
-					write (1, s_res, size);
-					sum_d = sum(size);
-				}
-				else
-				{
-					sum_over_width = over_width(flags.value_width, flags.value_precision);
-					sum_over_percision = over_percision(flags.value_precision, size);
-					write (1, s_res, size);
-					sum_d = sum(size);
-				}
-
+				write (1, s_res, size);
+				sum_d = sum(size);
 			}
-			else
+			if (flags.flag_width < size && flags.flag_precision > size)
 			{
-				sum_over_width = over_width(flags.value_width, flags.value_precision);
 				sum_over_percision = over_percision(flags.value_precision, size);
 				write (1, s_res, size);
 				sum_d = sum(size);
+			}
+			if (flags.value_width > size && flags.value_precision < size)
+			{
+				if (flags.value_width > flags.value_precision) // ширина больше сайза
+				{
+					if (flags.flag_zero == 0 && flags.flag_minus == 0)
+					{
+						sum_over_width = over_width(flags.value_width, size);
+						write (1, s_res, size);
+						sum_d = sum(size);
+					}
+					if (flags.flag_zero != 0)
+					{
+						sum_over_width = over_width_zero(flags.value_width, size);
+						write (1, s_res, size);
+						sum_d = sum(size);
+					}
+					if (flags.flag_minus != 0)
+					{
+						write(1, &res, 1);
+						write (1, s_res, size);
+						sum_over_width = over_width(flags.value_width, size);
+					}
+					if (flags.flag_zero != 0 && flags.flag_minus != 0)
+					{
+						over_width(flags.value_width, size);
+						write (1, s_res, size);
+						sum_d = sum(size);
+					}
+				}
+			}
+			if (flags.value_width > size && flags.value_precision > size) //ширина и точность больше сайза
+			{
+				if (flags.value_width > flags.value_precision)
+				{
+					if (flags.flag_zero == 0 && flags.flag_minus == 0)
+					{
+						sum_over_width = over_width(flags.value_width, flags.value_precision);
+						sum_over_percision = over_percision(flags.value_precision, size);
+						write (1, s_res, size);
+						sum_d = sum(size);
+					}
+					if (flags.flag_zero != 0)
+					{
+						sum_over_percision = over_percision(flags.value_width, size);
+						write (1, s_res, size);
+						sum_d = sum(size);
+					}
+					if (flags.flag_minus != 0)
+					{
+						sum_over_percision = over_percision(flags.value_precision, size);
+						sum_over_width = over_width(flags.value_width, flags.flag_precision);
+						write (1, s_res, size);
+						sum_d = sum(size);
+					}
+					if (flags.flag_zero != 0 && flags.flag_minus != 0)
+					{
+						sum_over_percision = over_percision(flags.value_precision, size);
+						sum_over_width = over_width(flags.value_width, flags.flag_precision);
+						write (1, s_res, size);
+						sum_d = sum(size);
+					}
+
+				}
+				if (flags.value_width <= flags.value_precision)
+				{
+					sum_over_percision = over_percision(flags.value_precision, size);
+					write (1, s_res, size);
+					sum_d = sum(size);
+				}
 			}
 		}
 	}
