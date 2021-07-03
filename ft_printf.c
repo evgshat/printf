@@ -25,5 +25,5 @@ int	ft_printf(char const *format, ...)
 
 // 	// res = ft_printf("Simple input test");
 // 	// ft_printf(" --- Return : %d\n", res);
-// 	ft_printf("%3u", 0);
+// 	ft_printf("%5x", 52625);
 // }

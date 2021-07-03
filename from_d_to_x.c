@@ -9,8 +9,11 @@ int	from_d_to_x(int chislo)
 	int		cnt_int_ch;
 	char	c_ost;
 	int		sum_d_to_x;
+	char	int_chh;
 
 	sum_d_to_x = 0;
+	if (chislo == 0)
+		return (0);
 	if (chislo < 16)
 	{
 		c_ost = dictionary_from_d_to_x(chislo);
@@ -29,7 +32,8 @@ int	from_d_to_x(int chislo)
 		{
 			int_ch = ft_itoa(int_chislo);
 			cnt_int_ch = ft_strlen(int_ch);
-			write (1, int_ch, cnt_int_ch);
+			int_chh = dictionary_from_d_to_x(int_chislo); //
+			write (1, &int_chh, cnt_int_ch);
 			sum_d_to_x = sum_d_to_x + sum(1);
 		}
 		c_ost = dictionary_from_d_to_x(ost);
