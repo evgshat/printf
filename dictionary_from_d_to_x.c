@@ -4,6 +4,8 @@ char	dictionary_from_d_to_x(int ost)
 {
 	char	c_ost;
 
+	if (ost == 0)
+		c_ost = '0';
 	if (ost >= 1 && ost <= 9)
 		c_ost = ost + '0';
 	if (ost == 10)

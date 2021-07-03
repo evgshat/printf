@@ -2,7 +2,7 @@
 
 int	x(struct s_flags flags, va_list args)
 {
-	int		chislo;
+	unsigned long long		chislo;
 	int		size;
 	int		sum_x;
 	int		sum_over_width;
@@ -11,26 +11,26 @@ int	x(struct s_flags flags, va_list args)
 	sum_x = 0;
 	sum_over_width = 0;
 	sum_over_percision = 0;
-	chislo = va_arg(args, int);
+	chislo = va_arg(args, unsigned int);
 	size = size_of_x(chislo);
 
 	if (flags.flag_width == 0 && flags.flag_precision == 0)
 		sum_x = from_d_to_x(chislo);
-	// if (flags.flag_precision == 1 && flags.value_precision == 0) // precision = 0 *s_res == '0'
-	// {
-	// 	if (flags.value_width > size)
-	// 	{
-	// 		flags.flag_zero = 0;
-	// 		if (flags.value_width > flags.value_precision) // ширина больше сайза
-	// 		{
-	// 			if (flags.flag_minus == 0)
-	// 				sum_over_width = over_width(flags.value_width, (size - 1));
-	// 			if (flags.flag_minus != 0)
-	// 				sum_over_width = over_width(flags.value_width, (size - 1));
-	// 		}
-	// 	}
-	// 	return (1);
-	// }
+	if (flags.flag_precision == 1 && flags.value_precision == 0) // precision = 0 *s_res == '0'
+	{
+		if (flags.value_width > size)
+		{
+			flags.flag_zero = 0;
+			if (flags.value_width > flags.value_precision) // ширина больше сайза
+			{
+				if (flags.flag_minus == 0)
+					sum_over_width = over_width(flags.value_width, (size - 1));
+				if (flags.flag_minus != 0)
+					sum_over_width = over_width(flags.value_width, (size - 1));
+			}
+		}
+		return (1);
+	}
 	if (flags.flag_width == 0 && flags.flag_precision != 0) //only_precision.c
 	{
 		if (size >= flags.value_precision)

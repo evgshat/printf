@@ -22,9 +22,9 @@ int				over_percision(int a, int b);
 int				size_of_d(int res);
 void			write_for_s(struct s_flags flags, char	*s_res);
 int				x(struct s_flags flags, va_list args);
-int				from_d_to_x(int chislo);
+int				from_d_to_x(unsigned long long chislo);
 char			dictionary_from_d_to_x(int ost);
-int				from_d_to_big_x(int chislo);
+int				from_d_to_big_x(unsigned long long chislo);
 int				big_x(struct s_flags flags, va_list args);
 char			dictionary_from_d_to_big_x(int ost);
 int				size_of_x(int res);
@@ -37,6 +37,7 @@ int				sum(int size);
 size_t			ft_strlen (const char *str);
 int				processor_type(struct s_flags flags, va_list args);
 int				ft_atoi(const char *string);
+int				ft_printf(char const *format, ...);
 
 struct s_flags
 {

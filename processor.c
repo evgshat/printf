@@ -14,7 +14,7 @@ int	processor(const char *format, va_list args)
 	res = 0;
 	flag_for_exit = 0;
 	for_parsing = format;
-	while (format[i] != '\0')
+ 	while (format[i] != '\0')
 	{
 		while (format[i] != '%')
 		{

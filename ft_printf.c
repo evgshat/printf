@@ -15,15 +15,3 @@ int	ft_printf(char const *format, ...)
 	proc_res = processor(format, args);
 	return (proc_res);
 }
-
-// int main()
-// {
-// 	// int	res;
-// 	// int		a = -4;
-// 	// char	*n = "abcdefghijklmnop";
-// 	// char	*r = "%%";
-
-// 	// res = ft_printf("Simple input test");
-// 	// ft_printf(" --- Return : %d\n", res);
-// 	ft_printf("%5x", 52625);
-// }
