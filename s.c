@@ -20,6 +20,18 @@ int	s(struct s_flags flags, va_list args)
 	{
 		return (sum_s + sum_over_width);
 	}
+	if (flags.flag_width == 0 && flags.flag_precision != 0) // есть только точность
+	{
+		if (size <= flags.flag_precision)
+		{
+			write (1, s_res, size);
+			sum_s = sum(size);
+		}
+		if (size > flags.value_precision)
+		{
+			sum_s = write_s(size, flags.value_precision, s_res);
+		}
+	}
 	if (flags.flag_width == 0 && flags.flag_precision == 0)
 	{
 		write (1, s_res, size);

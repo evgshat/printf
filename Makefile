@@ -28,6 +28,7 @@ size_of_x.c \
 sum.c \
 u.c \
 write_for_s.c \
+write_s.c \
 x.c
 
 OBJS = $(SRCS:.c=.o)
