@@ -32,7 +32,7 @@ int	processor(const char *format, va_list args)
 		}
 		if (flag_for_exit == 1)
 			break ;
-		flags = parser_flags(&for_parsing, args);
+		flags = new_parser_flags(&for_parsing, args);
 		// printf("type = %c\nflag_width = %d\nvalue_width = %d\nflag_minus = %d\nflag_zero = %d\nflag_precision = %d\nvalue_precision = %d\nflag_star = %d\n",
 		// flags.type, flags.flag_width,
 		// flags.value_width, flags.flag_minus, flags.flag_zero,

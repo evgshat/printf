@@ -13,6 +13,7 @@ ft_itoa.c \
 ft_printf.c \
 ft_strjoin.c \
 ft_strlen.c \
+new_parser_flags \
 over_percision.c \
 over_width_zero.c \
 over_width.c \
@@ -28,6 +29,7 @@ size_of_x.c \
 sum.c \
 u.c \
 write_for_s.c \
+write_s_null.c \
 write_s.c \
 x.c
 

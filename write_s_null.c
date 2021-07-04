@@ -1,11 +1,10 @@
 #include "ft_printf.h"
 
-int	write_s(int p, char *s_res)
+int	write_s_null(char *s_res, int size)
 {
 	char	*s_null;
-	int		i_dif_arg;
+	int		sum_s;
 
-	i_dif_arg = 0;
 	if (s_res == NULL)
 	{
 		s_null = (char *)malloc(sizeof(char) * 6);
@@ -13,11 +12,10 @@ int	write_s(int p, char *s_res)
 		write (1, s_null, 6);
 		return (6);
 	}
-	while (i_dif_arg < p)
+	else
 	{
-		write (1, s_res, 1);
-		i_dif_arg++;
-		s_res++;
+		write (1, s_res, size);
+		sum_s = sum(size);
+		return (sum_s);
 	}
-	return (p);
 }

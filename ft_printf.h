@@ -38,7 +38,9 @@ size_t			ft_strlen (const char *str);
 int				processor_type(struct s_flags flags, va_list args);
 int				ft_atoi(const char *string);
 int				ft_printf(char const *format, ...);
-int				write_s(int a, int b, char *s_res);
+int				write_s(int p, char *s_res);
+int				write_s_null(char *s_res, int size);
+struct s_flags	new_parser_flags(const char **format, va_list args);
 
 struct s_flags
 {

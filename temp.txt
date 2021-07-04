@@ -2,39 +2,25 @@
 // cspdiuxX%
 
 #include "ft_printf.h"
-
-int *f_1(int *a)
+int f_1(char const *format, ...)
 {
-	*a = *a + 10;
-	return (a);
+	va_list	args;
+	char *res;
+	char es;
+
+	// res = malloc (50);
+
+	va_start(args, format);
+	res = va_arg(args, char *);
+	if (res == NULL)
+		es = 'h';
+	write (1, &es, 1);
+
+	va_end(args);
+	return (0);
 }
 
 int	main(void)
 {
-	int	a;
-
-	a = 10;
-	f_1(&a);
-	printf("%d", a);
-	return (a);
+	f_1("hello", NULL);
 }
-
-
-
-//int *point_b = &b;
-//если распечатаю значение указателя point_b, то оно равно 5
-//если рапечатаю адрес(%p) указаеля point_b, то он равен 0x7ffeeade287c
-//если рапечатаю адрес(%p) указаеля переменной b, то он равен 0x5(?) - почему warning при компиляции? %p подходит только для указателей?
-
-//write
-// write (handle, buffer, count);
-// тип - void *buffer; - адрес, куда нужно помещать или откуда нужно брать байты
-// передаю адрес в write и он по нему распечатывает значение
-// значит, нужно передать в write адрес другого указателя (ук на ук), где в его значении будет лежать адрес указателя
-// допустим, есть point - указатель
-// его адрес кладем в ук на ук и в write передаем этот адрес
-//нужно обработать сл строку: printf ("%p", point), где point - указатель 
-
-// write не работает с int
-// write работает с char и char* только если обращение по адресу
-// Функция write() переписывает count байт из буфера, на который указывает bufy

@@ -8,5 +8,5 @@ int	main(void)
 
 	// printf("%*s %*s", 1, 2, "aa", "bb");
 	// printf("%*s", 1, "aa");
-	printf("%5.3s", "123");
+	printf("%.000101d", 45);
 }
