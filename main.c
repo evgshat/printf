@@ -10,5 +10,5 @@ int main()
 	// res = ft_printf("Simple input test");
 	// ft_printf(" --- Return : %d\n", res);
 	int i = 0;
-	i = ft_printf("%3.03s", "sss");
+	i = ft_printf("%2s", NULL);
 }

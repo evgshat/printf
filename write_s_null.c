@@ -1,6 +1,6 @@
 #include "ft_printf.h"
 
-int	write_s_null(char *s_res, int size)
+int	write_s_null(char *s_res, int size, int value_precision, int flag_presicion)
 {
 	char	*s_null;
 	int		sum_s;
@@ -9,7 +9,12 @@ int	write_s_null(char *s_res, int size)
 	{
 		s_null = (char *)malloc(sizeof(char) * 6);
 		s_null = "(null)";
-		write (1, s_null, 6);
+		if (value_precision >= 6 || (value_precision == 0 && flag_presicion == 0))
+			write (1, s_null, 6);
+		else
+		{
+			write (1, s_null, value_precision);
+		}
 		return (6);
 	}
 	else

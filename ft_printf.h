@@ -39,7 +39,7 @@ int				processor_type(struct s_flags flags, va_list args);
 int				ft_atoi(const char *string);
 int				ft_printf(char const *format, ...);
 int				write_s(int p, char *s_res);
-int				write_s_null(char *s_res, int size);
+int				write_s_null(char *s_res, int size, int value_precision, int flag_presicion);
 struct s_flags	new_parser_flags(const char **format, va_list args);
 
 struct s_flags
