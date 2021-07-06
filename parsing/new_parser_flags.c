@@ -1,4 +1,4 @@
-#include "ft_printf.h"
+#include "../ft_printf.h"
 
 struct s_flags	new_parser_flags(const char **format, va_list args)
 {
@@ -9,6 +9,7 @@ struct s_flags	new_parser_flags(const char **format, va_list args)
 	char			*value_width;
 	char			*value_precision;
 	int				flag_type;
+	const char		*point_dot;
 
 	j = 0;
 	i = 0;
@@ -54,11 +55,11 @@ struct s_flags	new_parser_flags(const char **format, va_list args)
 		if (format[j][i] == '.')
 		{
 			i++;
-			// point_dot = &format[j][i];
+			point_dot = &format[j][i];
 			flags.flag_precision = 1;
-			// flags.value_precision = parser_dot(point_dot, args);
+			flags.value_precision = parser_dot(point_dot, args);
 		}
-		if (format[j][i] >= '0' && format[j][i] <= '9')
+		if (format[j][i] >= '0' && format[j][i] <= '9' && flags.flag_precision == 1)
 		{
 			// flags.flag_precision = 1;
 			value_precision = (char *)malloc(sizeof(char) * 20);

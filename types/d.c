@@ -1,4 +1,4 @@
-#include "ft_printf.h"
+#include "../ft_printf.h"
 
 int	d(struct s_flags flags, va_list args)
 {
@@ -85,7 +85,7 @@ int	d(struct s_flags flags, va_list args)
 					s_res++;
 					sum_over_width = over_width_zero(flags.value_width, size);
 					sum_d = sum(size);
-					write (1, s_res, size);
+					write (1, s_res, size-1);
 					sum_d = sum(size);
 				}
 				else

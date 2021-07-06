@@ -1,6 +1,6 @@
 //cspdiuxX%
 
-#include "ft_printf.h"
+#include "../ft_printf.h"
 
 struct s_flags	parser_flags(const char **format, va_list args)
 {

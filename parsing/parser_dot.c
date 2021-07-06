@@ -1,4 +1,4 @@
-#include "ft_printf.h"
+#include "../ft_printf.h"
 
 int	parser_dot(const char *point_dot, va_list args)
 {
