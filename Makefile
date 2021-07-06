@@ -1,12 +1,13 @@
-parsing_srcs := parser_flags.c parser_dot.c new_parser_flags.c
+parsing_srcs := parser_dot.c new_parser_flags.c parser_width.c
 SRCS_P := $(addprefix parsing/, $(parsing_srcs))
 
 types_srcs := c.c d.c big_x.c p.c s.c u.c x.c
 SRCS_T := $(addprefix types/, $(types_srcs))
 
-SRCS := dictionary_from_d_to_big_x.c \
-dictionary_from_d_to_x.c \
-errors.c \
+dic_srcs := dictionary_from_d_to_big_x.c dictionary_from_d_to_x.c is_type.c
+SRCS_D := $(addprefix dictionaries/, $(dic_srcs))
+
+SRCS := errors.c \
 from_d_to_big_x.c \
 from_d_to_p.c \
 from_d_to_x.c \
@@ -31,6 +32,7 @@ write_s.c \
 
 OBJS_P = $(SRCS_P:.c=.o)
 OBJS_T = $(SRCS_T:.c=.o)
+OBJS_D = $(SRCS_D:.c=.o)
 OBJS = $(SRCS:.c=.o)
 
 NAME = libftprintf.a
@@ -47,11 +49,11 @@ HEADER = -I ft_printf.h
 
 all: $(NAME)
 
-$(NAME): $(OBJS) $(OBJS_P) $(OBJS_T)
-	ar rcs $(NAME) $(OBJS) $(OBJS_P) $(OBJS_T)
+$(NAME): $(OBJS) $(OBJS_P) $(OBJS_T) $(OBJS_D)
+	ar rcs $(NAME) $(OBJS) $(OBJS_P) $(OBJS_T) $(OBJS_D)
 
 clean:
-	$(RM) $(OBJS) $(OBJS_P) $(OBJS_T)
+	$(RM) $(OBJS) $(OBJS_P) $(OBJS_T) $(OBJS_D)
 
 fclean: clean
 	rm -f $(NAME)

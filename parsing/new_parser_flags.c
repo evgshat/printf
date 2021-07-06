@@ -18,9 +18,7 @@ struct s_flags	new_parser_flags(const char **format, va_list args)
 	while (format[j][i] != '%')
 		i++;
 	i++;
-	if (format[j][i] == 'c' || format[j][i] == 's' || format[j][i] == 'p'
-		|| format[j][i] == 'd' || format[j][i] == 'i' || format[j][i] == 'u'
-		|| format[j][i] == 'x' || format[j][i] == 'X')
+	if (is_type(format[j][i]) == 1)
 	{
 		flags.type = format[j][i];
 		return (flags);
@@ -61,7 +59,6 @@ struct s_flags	new_parser_flags(const char **format, va_list args)
 		}
 		if (format[j][i] >= '0' && format[j][i] <= '9' && flags.flag_precision == 1)
 		{
-			// flags.flag_precision = 1;
 			value_precision = (char *)malloc(sizeof(char) * 20);
 			i_v = 0;
 			while (format[j][i] >= '0' && format[j][i] <= '9')
@@ -74,9 +71,7 @@ struct s_flags	new_parser_flags(const char **format, va_list args)
 			flags.value_precision = ft_atoi(value_precision);
 			free (value_precision);
 		}
-		if (format[j][i] == 'c' || format[j][i] == 's' || format[j][i] == 'p'
-			|| format[j][i] == 'd' || format[j][i] == 'i' || format[j][i] == 'u'
-			|| format[j][i] == 'x' || format[j][i] == 'X')
+		if (is_type(format[j][i]) == 1)
 		{
 			flags.type = format[j][i];
 			flag_type = 1;

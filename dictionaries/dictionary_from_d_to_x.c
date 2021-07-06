@@ -1,6 +1,6 @@
-#include "ft_printf.h"
+#include "../ft_printf.h"
 
-char	dictionary_from_d_to_big_x(int ost)
+char	dictionary_from_d_to_x(int ost)
 {
 	char	c_ost;
 
@@ -9,16 +9,16 @@ char	dictionary_from_d_to_big_x(int ost)
 	if (ost >= 1 && ost <= 9)
 		c_ost = ost + '0';
 	if (ost == 10)
-		c_ost = 'A';
+		c_ost = 'a';
 	if (ost == 11)
-		c_ost = 'B';
+		c_ost = 'b';
 	if (ost == 12)
-		c_ost = 'C';
+		c_ost = 'c';
 	if (ost == 13)
-		c_ost = 'D';
+		c_ost = 'd';
 	if (ost == 14)
-		c_ost = 'E';
+		c_ost = 'e';
 	if (ost == 15)
-		c_ost = 'F';
+		c_ost = 'f';
 	return (c_ost);
 }

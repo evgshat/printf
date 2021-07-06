@@ -8,7 +8,7 @@
 # include <stdarg.h>
 
 int				parser_dot(const char *point_dot, va_list args);
-struct s_flags	parser_flags(const char **format, va_list args);
+struct s_flags	new_parser_flags(const char **format, va_list args);
 int				parser_width(va_list args);
 int				processor(const char *format, va_list args);
 int				errors(const char *format);
@@ -40,7 +40,7 @@ int				ft_atoi(const char *string);
 int				ft_printf(char const *format, ...);
 int				write_s(int p, char *s_res);
 int				write_s_null(char *s_res, int size, int value_precision, int flag_presicion);
-struct s_flags	new_parser_flags(const char **format, va_list args);
+int				is_type(char ch);
 
 struct s_flags
 {
