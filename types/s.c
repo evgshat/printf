@@ -1,17 +1,17 @@
 #include "../ft_printf.h"
 
-int	s(struct s_flags flags, va_list args)
+int	s(t_flags flags, va_list args)
 {
 	char	*s_res;
 	int		size;
 	int		sum_s;
-	int		sum_over_width;
-	int		sum_over_percision;
+	int		sum_w;
+	int		sum_p;
 
 
 	sum_s = 0;
-	sum_over_width = 0;
-	sum_over_percision = 0;
+	sum_w = 0;
+	sum_p = 0;
 	s_res = va_arg(args, char *);
 	while (1)
 	{
@@ -31,258 +31,258 @@ int	s(struct s_flags flags, va_list args)
 			break ;
 		}
 	}
-	if (flags.flag_width == 0 && flags.flag_precision == 0) // нет ни точности, ни ширины
+	if (flags.fl_w == 0 && flags.fl_p == 0) // нет ни точности, ни ширины
 	{
-		sum_s = write_s_null(s_res, size, flags.value_precision, flags.flag_precision);
+		sum_s = write_s_null(s_res, size, flags.val_p, flags.fl_p);
 	}
-	if (flags.flag_width == 0 && flags.flag_precision != 0) // есть только точность
+	if (flags.fl_w == 0 && flags.fl_p != 0) // есть только точность
 	{
-		if ((size <= flags.value_precision) && flags.value_precision != 0)
+		if ((size <= flags.val_p) && flags.val_p != 0)
 		{
-			sum_s = write_s_null(s_res, size, flags.value_precision, flags.flag_precision);
+			sum_s = write_s_null(s_res, size, flags.val_p, flags.fl_p);
 		}
-		if ((size > flags.value_precision) && flags.value_precision != 0)
+		if ((size > flags.val_p) && flags.val_p != 0)
 		{
 			if (s_res == NULL)
-				sum_s = write_s_null(s_res, size, flags.value_precision, flags.flag_precision);
+				sum_s = write_s_null(s_res, size, flags.val_p, flags.fl_p);
 			else
-				sum_s = write_s(flags.value_precision, s_res);
+				sum_s = write_s(flags.val_p, s_res);
 		}
-		if (flags.value_precision == 0)
-			return (sum_s + sum_over_width);
+		if (flags.val_p == 0)
+			return (sum_s + sum_w);
 	}
-	if (flags.flag_width != 0 && flags.flag_precision == 0) // есть только ширина
+	if (flags.fl_w != 0 && flags.fl_p == 0) // есть только ширина
 	{
-		if (size < flags.value_width)
+		if (size < flags.val_w)
 		{
-			if (flags.flag_minus != 0)
+			if (flags.fl_m != 0)
 			{
-				sum_s = write_s_null(s_res, size, flags.value_precision, flags.flag_precision);
+				sum_s = write_s_null(s_res, size, flags.val_p, flags.fl_p);
 				if (s_res == NULL)
-					sum_over_width = over_width(flags.value_width, 6);
+					sum_w = over_width(flags.val_w, 6);
 				else
-					sum_over_width = over_width(flags.value_width, size);
+					sum_w = over_width(flags.val_w, size);
 			}
 			else
 			{
 				if (s_res == NULL)
-					sum_over_width = over_width(flags.value_width, 6);
+					sum_w = over_width(flags.val_w, 6);
 				else
-					sum_over_width = over_width(flags.value_width, size);
-				sum_s = write_s_null(s_res, size, flags.value_precision, flags.flag_precision);
+					sum_w = over_width(flags.val_w, size);
+				sum_s = write_s_null(s_res, size, flags.val_p, flags.fl_p);
 			}
 		}
-		if (size >= flags.value_width)
-			sum_s = write_s_null(s_res, size, flags.value_precision, flags.flag_precision);
+		if (size >= flags.val_w)
+			sum_s = write_s_null(s_res, size, flags.val_p, flags.fl_p);
 	}
-	if (flags.flag_width != 0 && flags.flag_precision != 0) // есть точность и ширина
+	if (flags.fl_w != 0 && flags.fl_p != 0) // есть точность и ширина
 	{
-		if (flags.value_precision < size && flags.value_width < size)
+		if (flags.val_p < size && flags.val_w < size)
 		{
-			if (flags.value_width > flags.value_precision)
+			if (flags.val_w > flags.val_p)
 			{
-				if (flags.flag_minus == 0)
+				if (flags.fl_m == 0)
 				{
 					if (s_res == NULL)
 					{
-						sum_over_width = over_width(flags.value_width, flags.value_precision);
-						sum_s = write_s_null(s_res, size, flags.value_precision, flags.flag_precision);
+						sum_w = over_width(flags.val_w, flags.val_p);
+						sum_s = write_s_null(s_res, size, flags.val_p, flags.fl_p);
 					}
 					else
 					{
-						sum_over_width = over_width(flags.value_width, flags.value_precision);
-						sum_s = write_s(flags.value_precision, s_res);
+						sum_w = over_width(flags.val_w, flags.val_p);
+						sum_s = write_s(flags.val_p, s_res);
 					}
 				}
-				if (flags.flag_minus != 0)
+				if (flags.fl_m != 0)
 				{
 					if (s_res == NULL)
 					{
-						sum_s = write_s_null(s_res, size, flags.value_precision, flags.flag_precision);
-						sum_over_width = over_width(flags.value_width, flags.value_precision);
+						sum_s = write_s_null(s_res, size, flags.val_p, flags.fl_p);
+						sum_w = over_width(flags.val_w, flags.val_p);
 					}
 					else
 					{
-						sum_s = write_s(flags.value_precision, s_res);
-						sum_over_width = over_width(flags.value_width, flags.value_precision);
+						sum_s = write_s(flags.val_p, s_res);
+						sum_w = over_width(flags.val_w, flags.val_p);
 					}
 				}
 			}
-			if (flags.value_width < flags.value_precision)
+			if (flags.val_w < flags.val_p)
 			{
 				if (s_res == NULL)
 				{
-					sum_over_width = over_width(flags.value_width, 6);
-					sum_s = write_s_null(s_res, size, flags.value_precision, flags.flag_precision);
+					sum_w = over_width(flags.val_w, 6);
+					sum_s = write_s_null(s_res, size, flags.val_p, flags.fl_p);
 				}
 				else
 				{
-					sum_over_width = over_width(flags.value_width, flags.value_precision);
-					sum_s = write_s(flags.value_precision, s_res);
+					sum_w = over_width(flags.val_w, flags.val_p);
+					sum_s = write_s(flags.val_p, s_res);
 				}
 			}
-			if (flags.value_width == flags.value_precision)
+			if (flags.val_w == flags.val_p)
 			{
 				if (s_res == NULL)
 				{
-					sum_over_width = over_width(flags.value_width, 6);
-					sum_s = write_s_null(s_res, size, flags.value_precision, flags.flag_precision);
+					sum_w = over_width(flags.val_w, 6);
+					sum_s = write_s_null(s_res, size, flags.val_p, flags.fl_p);
 				}
 				else
 				{
-					sum_over_width = over_width(flags.value_width, flags.value_precision);
-					sum_s = write_s(flags.value_precision, s_res);
+					sum_w = over_width(flags.val_w, flags.val_p);
+					sum_s = write_s(flags.val_p, s_res);
 				}
 			}
 		}
-		if (flags.flag_width < size && flags.flag_precision > size)
+		if (flags.fl_w < size && flags.fl_p > size)
 		{
-			sum_s = write_s(flags.value_precision, s_res);
+			sum_s = write_s(flags.val_p, s_res);
 		}
-		if (flags.value_width >= size && flags.value_precision == size && size == 0)
+		if (flags.val_w >= size && flags.val_p == size && size == 0)
 		{
-			sum_over_width = over_width(flags.value_width, flags.value_precision);
+			sum_w = over_width(flags.val_w, flags.val_p);
 		}
-		if (flags.value_width >= size && flags.value_precision < size) //  ширина больше сайза, а точность меньше
+		if (flags.val_w >= size && flags.val_p < size) //  ширина больше сайза, а точность меньше
 		{
-			flags.flag_zero = 0;
-			if (flags.value_width > flags.value_precision) // ширина больше точности
+			flags.fl_z = 0;
+			if (flags.val_w > flags.val_p) // ширина больше точности
 			{
-				if (flags.flag_minus == 0)
+				if (flags.fl_m == 0)
 				{
 					if (s_res == NULL)
 					{
-						if (flags.value_precision == 0 && flags.flag_precision == 1)
+						if (flags.val_p == 0 && flags.fl_p == 1)
 						{
-							sum_over_width = over_width(flags.value_width, 0);
+							sum_w = over_width(flags.val_w, 0);
 						}
 						else
 						{
-							sum_over_width = over_width(flags.value_width, flags.value_precision);
+							sum_w = over_width(flags.val_w, flags.val_p);
 						}
-						sum_s = write_s_null(s_res, size, flags.value_precision, flags.flag_precision);
+						sum_s = write_s_null(s_res, size, flags.val_p, flags.fl_p);
 					}
 					else
 					{
-						sum_over_width = over_width(flags.value_width, flags.value_precision);
-						sum_s = write_s(flags.value_precision, s_res);
+						sum_w = over_width(flags.val_w, flags.val_p);
+						sum_s = write_s(flags.val_p, s_res);
 					}
 				}
-				if (flags.flag_minus != 0)
+				if (flags.fl_m != 0)
 				{
 					if (s_res != NULL)
 					{
-						sum_s = write_s(flags.value_precision, s_res);
-						sum_over_width = over_width(flags.value_width, flags.value_precision);
+						sum_s = write_s(flags.val_p, s_res);
+						sum_w = over_width(flags.val_w, flags.val_p);
 					}
 					if (s_res == NULL)
 					{
-						if (flags.value_precision == 0)
-							sum_over_width = over_width(flags.value_width, 0);
-						if (flags.value_precision != 0)
+						if (flags.val_p == 0)
+							sum_w = over_width(flags.val_w, 0);
+						if (flags.val_p != 0)
 						{
-							sum_s = write_s_null(s_res, size, flags.value_precision, flags.flag_precision);
-							sum_over_width = over_width(flags.value_width, flags.value_precision);
+							sum_s = write_s_null(s_res, size, flags.val_p, flags.fl_p);
+							sum_w = over_width(flags.val_w, flags.val_p);
 						}
 					}
 				}
 			}
 		}
-		if (flags.value_width > size && flags.value_precision > size) //ширина и точность больше сайза
+		if (flags.val_w > size && flags.val_p > size) //ширина и точность больше сайза
 		{
-			flags.flag_zero = 0;
-			if (flags.value_width > flags.value_precision && flags.value_precision == size)
+			flags.fl_z = 0;
+			if (flags.val_w > flags.val_p && flags.val_p == size)
 			{
-				if (flags.flag_minus != 0)
+				if (flags.fl_m != 0)
 				{
 					if (s_res != NULL)
 					{
-						sum_s = write_s(flags.value_precision, s_res);
-						sum_over_width = over_width(flags.value_width, size);
+						sum_s = write_s(flags.val_p, s_res);
+						sum_w = over_width(flags.val_w, size);
 					}
 					if (s_res == NULL)
 					{
-						sum_s = write_s_null(s_res, size, flags.value_precision, flags.flag_precision);
-						sum_over_width = over_width(flags.value_width, size);
+						sum_s = write_s_null(s_res, size, flags.val_p, flags.fl_p);
+						sum_w = over_width(flags.val_w, size);
 					}
 				}
 			}
-			if (flags.value_width > flags.value_precision && flags.value_precision != size)
+			if (flags.val_w > flags.val_p && flags.val_p != size)
 			{
-				if (flags.flag_minus == 0)
+				if (flags.fl_m == 0)
 				{
 					if (s_res == NULL)
 					{
-						sum_over_width = over_width(flags.value_width, 6);
-						sum_s = write_s_null(s_res, size, flags.value_precision, flags.flag_precision);
+						sum_w = over_width(flags.val_w, 6);
+						sum_s = write_s_null(s_res, size, flags.val_p, flags.fl_p);
 					}
 					else
 					{
-						sum_over_width = over_width(flags.value_width, size);
-						sum_s = write_s(flags.value_precision - 1, s_res);
+						sum_w = over_width(flags.val_w, size);
+						sum_s = write_s(flags.val_p - 1, s_res);
 					}
 				}
-				if (flags.flag_minus != 0)
+				if (flags.fl_m != 0)
 				{
 					if (s_res != NULL)
 					{
 						sum_s = write_s(size, s_res);
-						sum_over_width = over_width(flags.value_width, size);
+						sum_w = over_width(flags.val_w, size);
 					}
 					if (s_res == NULL)
 					{
-						sum_s = write_s_null(s_res, size, flags.value_precision, flags.flag_precision);
-						sum_over_width = over_width(flags.value_width, 6);
+						sum_s = write_s_null(s_res, size, flags.val_p, flags.fl_p);
+						sum_w = over_width(flags.val_w, 6);
 					}
 				}
 			}
-			if (flags.value_width == flags.value_precision)
+			if (flags.val_w == flags.val_p)
 			{
 				if (s_res == NULL)
 				{
-					sum_over_width = over_width(flags.value_width, 6);
-					sum_s = write_s_null(s_res, size, flags.value_precision, flags.flag_precision);
+					sum_w = over_width(flags.val_w, 6);
+					sum_s = write_s_null(s_res, size, flags.val_p, flags.fl_p);
 				}
 				else
 				{
-					sum_over_width = over_width(flags.value_width, size);
+					sum_w = over_width(flags.val_w, size);
 					sum_s = write_s(size, s_res);
 				}
 			}
-			if (flags.value_precision > flags.value_width)
+			if (flags.val_p > flags.val_w)
 			{
 				if (size == 0)
-					sum_over_width = over_width(flags.value_width, size);
+					sum_w = over_width(flags.val_w, size);
 			}
 		}
-		if (flags.value_width < size && flags.value_precision > size)
+		if (flags.val_w < size && flags.val_p > size)
 		{
 			sum_s = write_s(size, s_res);
 		}
-		if (flags.value_width < size && flags.value_precision == size)
+		if (flags.val_w < size && flags.val_p == size)
 		{
-			sum_s = write_s(flags.value_precision, s_res);
+			sum_s = write_s(flags.val_p, s_res);
 		}
-		if (flags.value_width > size && flags.value_precision == size && size != 0)
+		if (flags.val_w > size && flags.val_p == size && size != 0)
 		{
-			if (flags.flag_minus == 0)
+			if (flags.fl_m == 0)
 			{
-				sum_over_width = over_width(flags.value_width, flags.value_precision);
-				sum_s = write_s(flags.value_precision, s_res);
+				sum_w = over_width(flags.val_w, flags.val_p);
+				sum_s = write_s(flags.val_p, s_res);
 			}
-			if (flags.flag_minus != 0)
+			if (flags.fl_m != 0)
 			{
-				sum_s = write_s(flags.value_precision, s_res);
-				sum_over_width = over_width(flags.value_width, flags.value_precision);
+				sum_s = write_s(flags.val_p, s_res);
+				sum_w = over_width(flags.val_w, flags.val_p);
 			}
 		}
-		// if (flags.value_width > size && flags.value_precision == size)
+		// if (flags.val_w > size && flags.val_p == size)
 		// {
-		// 	sum_over_width = over_width(flags.value_width, flags.value_precision);
-		// 	sum_s = write_s(flags.value_precision, s_res);
+		// 	sum_w = over_width(flags.val_w, flags.val_p);
+		// 	sum_s = write_s(flags.val_p, s_res);
 		// }
 	}
-	return (sum_s + sum_over_width);
+	return (sum_s + sum_w);
 }
 
 // static char *s_hidden = "hi low\0don't print me lol\0";

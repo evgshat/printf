@@ -1,83 +1,30 @@
 #include "../ft_printf.h"
 
-struct s_flags	new_parser_flags(const char **format, va_list args)
+t_flags	new_parser_flags(const char *format, va_list args, int *i)
 {
-	struct s_flags	flags = {'-', 0, 0, 0, 0, 0, 0, 0};
-	int				i;
-	int				i_v;
-	int				j;
-	char			*value_width;
-	char			*value_precision;
-	int				flag_type;
-	const char		*point_dot;
+	t_flags			flags;
+	int				res;
 
-	j = 0;
-	i = 0;
-	i_v = 0;
-	flag_type = 0;
-	while (format[j][i] != '%')
-		i++;
-	i++;
-	if (is_type(format[j][i]) == 1)
+	res = 0;
+	init_flag(&flags);
+	// res = parser_begin((char *)format, i);
+	while (format[*i])
 	{
-		flags.type = format[j][i];
-		return (flags);
-	}
-	while (flag_type == 0)
-	{
-		if (format[j][i] == '\0')
+		if (format[*i] == '0')
+			parser_zero(&flags, i);
+		if (format[*i] == '-')
+			parser_minus(&flags, i);
+		if (ft_isdigit(format[*i]) == 1)
+			parser_width(&flags, (char *)format, i, args);
+		if (format[*i] == '.')
+			parser_dot(&flags, (char *)format, i, args);
+		if (is_type(format[*i]) == 1)
+		{
+			flags.type = format[*i];
+			*i = *i + 1;
 			break ;
-		if (format[j][i] == '-')
-			flags.flag_minus = 1;
-		if (format[j][i] == '0')
-			flags.flag_zero = 1;
-		if (format[j][i] >= '1' && format[j][i] <= '9')
-		{
-			flags.flag_width = 1;
-			value_width = (char *)malloc(sizeof(char) * 20);
-			while (format[j][i] >= '0' && format[j][i] <= '9')
-			{
-				value_width[i_v] = format[j][i];
-				i_v++;
-				i++;
-			}
-			value_width[i_v] = '\0';
-			flags.value_width = ft_atoi(value_width);
-			free (value_width);
 		}
-		if (format[j][i] == '*')
-		{
-			flags.flag_width = 1;
-			flags.value_width = parser_width(args);
-		}
-		if (format[j][i] == '.')
-		{
-			i++;
-			point_dot = &format[j][i];
-			flags.flag_precision = 1;
-			flags.value_precision = parser_dot(point_dot, args);
-		}
-		if (format[j][i] >= '0' && format[j][i] <= '9' && flags.flag_precision == 1)
-		{
-			value_precision = (char *)malloc(sizeof(char) * 20);
-			i_v = 0;
-			while (format[j][i] >= '0' && format[j][i] <= '9')
-			{
-				value_precision[i_v] = format[j][i];
-				i_v++;
-				i++;
-			}
-			value_precision[i_v] = '\0';
-			flags.value_precision = ft_atoi(value_precision);
-			free (value_precision);
-		}
-		if (is_type(format[j][i]) == 1)
-		{
-			flags.type = format[j][i];
-			flag_type = 1;
-		}
-		i++;
+		*i = *i + 1;
 	}
-	*format = *format + i;
 	return (flags);
 }

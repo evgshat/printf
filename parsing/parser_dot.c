@@ -1,20 +1,23 @@
 #include "../ft_printf.h"
 
-int	parser_dot(const char *point_dot, va_list args)
+void	parser_dot(t_flags *flags, char *format, int *i, va_list args)
 {
-	int	res;
+	char	*val_p;
+	int		i_v;
 
-	if (*point_dot >= '1' && *point_dot <= '9')
+	*i = *i + 1;
+	i_v = 0;
+	flags->fl_p = 1;
+	if (format[*i] == '*')
+		flags->val_p = va_arg(args, int);
+	while (ft_isdigit(format[*i]) == 1)
 	{
-		res = *point_dot - '0';
-		return (res);
+		val_p = (char *)malloc(sizeof(char) * 20);
+		val_p[i_v] = format[*i];
+		i_v++;
+		*i = *i + 1;
+		val_p[i_v] = '\0';
+		flags->val_p = ft_atoi(val_p);
+		free (val_p);
 	}
-	if (*point_dot == '*')
-	{
-		res = va_arg(args, int);
-		va_end(args);
-		return (res);
-	}
-	else
-		return (0);
 }
