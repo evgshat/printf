@@ -1,20 +1,30 @@
-// %[флаги][ширина][.точность][размер]тип
-// cspdiuxX%
-
 #include "ft_printf.h"
 
-int	ft_printf(char const *format, ...)
+int	ft_printf(const char *format, ...)
 {
-	va_list				args;
-	int					proc_res;
-	int 				i;
-	// int					er;
+	va_list	args;
+	int		res;
 
-	proc_res = 0;
-	i = 0;
 	va_start(args, format);
-	// er = errors(format);
-	write_before_perc((char *)format, &i);
-	proc_res = processor(format, args, &i);
-	return (proc_res);
+	res = 0;
+	res += parsing((char *)format, args);
+	va_end(args);
+	return (res);
 }
+
+// int	ft_printf(char const *format, ...)
+// {
+// 	va_list				args;
+// 	int					res;
+// 	int					i;
+// 	int					er;
+
+// 	res = 0;
+// 	i = 0;
+// 	va_start(args, format);
+// 	er = errors(format);
+// 	write_before_perc((char *)format, &i);
+// 	res = processor(format, args, &i, &res);
+// 	return (res);
+// }
+

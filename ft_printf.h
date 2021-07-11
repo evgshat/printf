@@ -21,7 +21,9 @@ typedef struct s_flags
 void			parser_dot(t_flags *flags, char *format, int *i, va_list args);
 t_flags			new_parser_flags(const char *format, va_list args, int *i);
 void			parser_width(t_flags *flags, char *format, int *i, va_list args);
-int				processor(const char *format, va_list args, int *i);
+// int				processor(const char *format, va_list args, int *i, int *res);
+int				parsing(char *format, va_list args);
+int				processor(t_flags flags, va_list args);
 int				errors(const char *format);
 int				d(t_flags flags, va_list args);
 char			*ft_itoa(int n);
@@ -30,7 +32,6 @@ int				s(t_flags flags, va_list args);
 size_t			ft_strlen (const char *str);
 int				over_width(int a, int b);
 int				over_percision(int a, int b);
-int				size_of_d(int res);
 void			write_for_s(struct s_flags flags, char	*s_res);
 int				x(t_flags flags, va_list args);
 int				from_d_to_x(unsigned long long chislo);
@@ -71,5 +72,13 @@ char			*res_for_u(va_list args, int *size);
 int				u_only_w(t_flags flags, char *s_res, int size);
 int				u_w_and_p(t_flags flags, int size, char *s_res);
 void			write_before_perc(const char *format, int *i);
+int				p_wp(t_flags flags, int size, int chislo);
+char			*res_for_s(va_list args, int *size);
+int				s_w_and_p(t_flags flags, char *s_res, int size);
+int				s_less_wp(t_flags flags, char *s_res, int size);
+int				s_over_w(t_flags flags, char *s_res, int size);
+int				s_over_wp(t_flags flags, char *s_res, int size);
+int				perc(t_flags flags);
+int				size_of_p(int res);
 
 #endif

@@ -1,4 +1,4 @@
-#include "ft_printf.h"
+#include "../../ft_printf.h"
 
 int	write_s_null(char *s_res, int size, int val_p, int fl_p)
 {

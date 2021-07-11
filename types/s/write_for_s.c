@@ -1,4 +1,4 @@
-#include "ft_printf.h"
+#include "../../ft_printf.h"
 
 void	write_for_s(struct s_flags flags, char	*s_res)
 {

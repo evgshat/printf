@@ -1,5 +1,4 @@
-#include "ft_printf.h"
-#include "libft.h"
+#include "../../ft_printf.h"
 
 int	from_d_to_x(unsigned long long chislo)
 {

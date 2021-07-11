@@ -3,15 +3,27 @@
 int	parser_end(char *format, va_list args, int *i)
 {
 	int	res;
-	int	proc_res;
 
 	res = 0;
+	if (format[*i] == '\0')
+		return (0);
+	while (format[*i] != '%')
+	{
+		if (format[*i] == '\0')
+			return (0);
+		write (1, &format[*i], 1);
+		res++;
+		*i = *i + 1;
+	}
 	if (format[*i] == '%')
-		proc_res = processor(format, args, i);
+	{
+		*i = *i + 1;
+		res += processor(format, args, i, &res);
+	}
 	while (format[*i] != '\0')
 	{
 		write (1, &format[*i], 1);
-		res++;
+		res += 1;
 		*i = *i + 1;
 	}
 	return (res);

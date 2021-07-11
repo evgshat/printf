@@ -1,4 +1,4 @@
-#include "ft_printf.h"
+#include "../../ft_printf.h"
 
 int	write_s(int p, char *s_res)
 {

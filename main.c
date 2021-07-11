@@ -1,16 +1,12 @@
 #include "ft_printf.h"
 
-int main()
+int	main(void)
 {
-	// int	res;
-	// int		a = -4;
-	// char	*n = "abcdefghijklmnop";
-	// char	*r = "%%";
+	int	i;
 
-	// res = ft_printf("Simple input test");
-	// ft_printf(" --- Return : %d\n", res);
-	int i = 0;
-	i = ft_printf("%c%c%c", 'a', 'b', 'c');
+	i = 0;
+	i = ft_printf("%3i, %3d", 8, -12);
+	printf("\n%d", i);
 }
-
-// "hi low\0don't print me lol\0"
+// ("%3i, %3d, %3d", 8, -12, 123);
+// i = ft_printf("%3i, %3d, %3d, %3d, %3d, %3d, %3d, %3d", 8, -12, 123456789,   0, -12345678,  97, -2147483648, 2147483647);

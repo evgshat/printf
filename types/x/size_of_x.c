@@ -1,4 +1,4 @@
-#include "ft_printf.h"
+#include "../../ft_printf.h"
 
 int	size_of_x(int res)
 {
