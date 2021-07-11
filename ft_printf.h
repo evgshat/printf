@@ -21,10 +21,7 @@ typedef struct s_flags
 void			parser_dot(t_flags *flags, char *format, int *i, va_list args);
 t_flags			new_parser_flags(const char *format, va_list args, int *i);
 void			parser_width(t_flags *flags, char *format, int *i, va_list args);
-// int				processor(const char *format, va_list args, int *i, int *res);
-int				parsing(char *format, va_list args);
-int				processor(t_flags flags, va_list args);
-int				errors(const char *format);
+int				processor(const char *format, va_list args, int *i);
 int				d(t_flags flags, va_list args);
 char			*ft_itoa(int n);
 int				c(t_flags flags, va_list args);
@@ -41,7 +38,7 @@ int				big_x(t_flags flags, va_list args);
 char			dictionary_from_d_to_big_x(int ost);
 int				size_of_x(int res);
 int				p(struct s_flags flags, va_list args);
-int				from_d_to_p(int chislo);
+int				from_d_to_p(unsigned long long chislo);
 int				u(struct s_flags flags, va_list args);
 char			*ft_itoa_unint(unsigned int n);
 int				over_width_zero(int a, int b);
@@ -71,7 +68,7 @@ int				big_x_wp(t_flags flags, int size, int chislo);
 char			*res_for_u(va_list args, int *size);
 int				u_only_w(t_flags flags, char *s_res, int size);
 int				u_w_and_p(t_flags flags, int size, char *s_res);
-void			write_before_perc(const char *format, int *i);
+int			write_before_perc(const char *format, int *i);
 int				p_wp(t_flags flags, int size, int chislo);
 char			*res_for_s(va_list args, int *size);
 int				s_w_and_p(t_flags flags, char *s_res, int size);
@@ -79,6 +76,7 @@ int				s_less_wp(t_flags flags, char *s_res, int size);
 int				s_over_w(t_flags flags, char *s_res, int size);
 int				s_over_wp(t_flags flags, char *s_res, int size);
 int				perc(t_flags flags);
-int				size_of_p(int res);
+int				size_of_p(unsigned long long res);
+char			*itoa_for_p(unsigned long long n);
 
 #endif

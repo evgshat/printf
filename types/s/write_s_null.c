@@ -12,9 +12,8 @@ int	write_s_null(char *s_res, int size, int val_p, int fl_p)
 		if (val_p >= 6 || (val_p == 0 && fl_p == 0))
 			write (1, s_null, 6);
 		else
-		{
 			write (1, s_null, val_p);
-		}
+		free(s_null); //
 		return (6);
 	}
 	else

@@ -18,7 +18,7 @@ int	parser_end(char *format, va_list args, int *i)
 	if (format[*i] == '%')
 	{
 		*i = *i + 1;
-		res += processor(format, args, i, &res);
+		res += processor(format, args, i);
 	}
 	while (format[*i] != '\0')
 	{

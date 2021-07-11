@@ -23,12 +23,13 @@ int	from_d_to_big_x(unsigned long long chislo)
 	{
 		int_chislo = chislo / 16;
 		ost = chislo % 16;
-		if (int_chislo > 16)
+		if (int_chislo >= 16)
 			from_d_to_big_x(int_chislo);
 		if (int_chislo < 16)
 		{
 			int_ch = ft_itoa(int_chislo);
 			cnt_int_ch = ft_strlen(int_ch);
+			free(int_ch); //
 			int_chh = dictionary_from_d_to_big_x(int_chislo);
 			write (1, &int_chh, 1);
 			sum_d_to_big_x = sum_d_to_big_x + sum(1);

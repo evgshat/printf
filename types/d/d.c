@@ -71,5 +71,6 @@ int	d(t_flags flags, va_list args)
 	sum_d += d_only_p(flags, s_res, size);
 	sum_d += d_only_w(flags, s_res, size);
 	sum_d += d_w_and_p(flags, size, s_res);
+	free(s_res);
 	return (sum_d);
 }

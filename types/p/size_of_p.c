@@ -1,10 +1,9 @@
 #include "../../ft_printf.h"
 
-int	size_of_p(int res)
+int	size_of_p(unsigned long long res)
 {
-	int		size;
-	int		res_copy;
-	char	*s_res;
+	int						size;
+	unsigned long long 		res_copy;
 
 	size = 0;
 	res_copy = res;
@@ -16,6 +15,5 @@ int	size_of_p(int res)
 	if (res == 0)
 		size++;
 	size = size + 2;
-	s_res = ft_itoa(res);
 	return (size);
 }

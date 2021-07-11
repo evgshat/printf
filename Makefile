@@ -1,7 +1,7 @@
-processor_srcs := processor.c processor_type.c errors.c
+processor_srcs := processor.c processor_type.c
 SRCS_PR := $(addprefix processor/, $(processor_srcs))
 
-parsing_srcs := parser_dot.c new_parser_flags.c parser_width.c parser_zero.c parser_minus.c init_flag.c write_before_perc.c
+parsing_srcs := parser_dot.c new_parser_flags.c parser_width.c parser_zero.c parser_minus.c init_flag.c write_before_perc.c parser_end.c
 SRCS_P := $(addprefix parsing/, $(parsing_srcs))
 
 types_srcs := c.c perc.c
@@ -45,8 +45,7 @@ over_width_zero.c \
 over_width.c \
 sum.c \
 ft_isdigit.c \
-main.c \
-parsing.c
+itoa_for_p.c
 
 OBJS = $(SRCS:.c=.o) $(SRCS_PR:.c=.o) $(SRCS_P:.c=.o) $(SRCS_T:.c=.o) $(SRCS_T_d:.c=.o) \
 $(SRCS_T_d_wp:.c=.o) $(SRCS_T_d_w:.c=.o) $(SRCS_T_x:.c=.o) $(SRCS_T_big_x:.c=.o) \
@@ -59,10 +58,10 @@ CC = gcc
 
 RM = rm -rf
 
-HEADER = -I ft_printf.h
+HEADER = ft_printf.h
 
-.c.o:
-	$(CC) $(CFLAGS) $< ${HEADER} -o $(<:.c=.o)
+%.o: %.c $(HEADER)
+	$(CC) $(CFLAGS) $< -I ${HEADER} -o $(<:.c=.o)
 
 all: $(NAME)
 
@@ -75,6 +74,6 @@ clean:
 fclean: clean
 	rm -f $(NAME)
 
-re: fclean $(NAME)
+re: fclean all
 
 .PHONY: all clean fclean re

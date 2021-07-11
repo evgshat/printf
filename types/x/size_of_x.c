@@ -4,7 +4,6 @@ int	size_of_x(int res)
 {
 	int		size;
 	int		res_copy;
-	char	*s_res;
 
 	size = 0;
 	res_copy = res;
@@ -15,6 +14,5 @@ int	size_of_x(int res)
 	}
 	if (res == 0)
 		size++;
-	s_res = ft_itoa(res);
 	return (size);
 }
