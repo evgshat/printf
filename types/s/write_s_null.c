@@ -5,10 +5,10 @@ int	write_s_null(char *s_res, int size, int val_p, int fl_p)
 	char	*s_null;
 	int		sum_s;
 
+	s_null = (char *)malloc(sizeof(char) * 7);
+	s_null = "(null)\0";
 	if (s_res == NULL)
 	{
-		s_null = (char *)malloc(sizeof(char) * 6);
-		s_null = "(null)";
 		if (val_p >= 6 || (val_p == 0 && fl_p == 0))
 			write (1, s_null, 6);
 		else
@@ -18,8 +18,7 @@ int	write_s_null(char *s_res, int size, int val_p, int fl_p)
 	}
 	else
 	{
-		write (1, s_res, size);
-		sum_s = sum(size);
+		sum_s = write (1, s_res, size);
 		return (sum_s);
 	}
 }
