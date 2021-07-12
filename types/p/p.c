@@ -82,6 +82,7 @@ int	p(t_flags flags, va_list args)
 	sum_p = 0;
 	chislo = va_arg(args, unsigned long long);
 	size = size_of_p(chislo);
+	sum_p += size - 2;
 	if (flags.fl_w == 0 && flags.fl_p == 0)
 		sum_p += from_d_to_p(chislo);
 	if (flags.fl_p == 1 && flags.val_p == 0)

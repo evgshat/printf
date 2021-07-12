@@ -8,7 +8,12 @@ int	write_s_null(char *s_res, int size, int val_p, int fl_p)
 	s_null = "(null)";
 	if (s_res == NULL)
 	{
-		if (val_p >= 6 || (val_p == 0 && fl_p == 0))
+		if (val_p > 6)
+		{
+			write (1, s_null, 6);
+			return (val_p);
+		}
+		if (val_p == 6 || (val_p == 0 && fl_p == 0))
 		{
 			write (1, s_null, 6);
 			return (6);

@@ -31,7 +31,7 @@ void	from_d_to_x(unsigned long long chislo)
 		{
 			int_ch = itoa_for_p(int_chislo);
 			cnt_int_ch = ft_strlen(int_ch);
-			free(int_ch); //
+			free(int_ch);
 			int_chh = dictionary_from_d_to_x(int_chislo);
 			write (1, &int_chh, 1);
 		}

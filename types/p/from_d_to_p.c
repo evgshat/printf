@@ -6,7 +6,6 @@ int	from_d_to_p(unsigned long long chislo)
 
 	sum_d_to_p = 2;
 	write (1, "0x", 2);
-	chislo = 1; //
-	// sum_d_to_p = sum_d_to_p + from_d_to_x(chislo);
+	from_d_to_x(chislo);
 	return (sum_d_to_p);
 }
