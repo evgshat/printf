@@ -16,6 +16,7 @@ typedef struct s_flags
 	int		fl_z;
 	int		fl_p;
 	int		val_p;
+	int		f_star;
 } t_flags;
 
 void			parser_dot(t_flags *flags, char *format, int *i, va_list args);
@@ -31,7 +32,7 @@ int				over_width(int a, int b);
 int				over_percision(int a, int b);
 void			write_for_s(struct s_flags flags, char	*s_res);
 int				x(t_flags flags, va_list args);
-int				from_d_to_x(unsigned long long chislo);
+void				from_d_to_x(unsigned long long chislo);
 char			dictionary_from_d_to_x(int ost);
 int				from_d_to_big_x(unsigned long long chislo);
 int				big_x(t_flags flags, va_list args);
@@ -51,7 +52,7 @@ int				write_s(int p, char *s_res);
 int				write_s_null(char *s_res, int size, int value_precision, int flag_presicion);
 int				is_type(char ch);
 int				ft_isdigit(int ch);
-void			parser_minus(t_flags *flags, int *i);
+// void			parser_minus(t_flags *flags, int *i);
 void			parser_zero(t_flags *flags, int *i);
 void			init_flag(t_flags *flags);
 int				parser_end(char *format, va_list args, int *i);

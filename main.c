@@ -3,13 +3,11 @@
 int	main(void)
 {
 	int	my;
-	// int	original;
+	int	or;
 
-	my = ft_printf("%32s", NULL);
+	my = ft_printf("%09.0d", UINT_MAX + 1);
 	write (1, "\n", 1);
-	// original = printf("%32s", NULL);
+	or = printf("%09.0d", UINT_MAX + 1);
 	printf("\nmy = %d", my);
-	// printf("\noriginal = %d", original);
+	printf("\nor = %d", or);
 }
-// ("%3i, %3d, %3d", 8, -12, 123);
-// i = ft_printf("%3i, %3d, %3d, %3d, %3d, %3d, %3d, %3d", 8, -12, 123456789,   0, -12345678,  97, -2147483648, 2147483647);

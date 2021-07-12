@@ -43,6 +43,11 @@ int	d_only_w(t_flags flags, char *s_res, int size)
 				sum_d += over_width(flags.val_w, size);
 				sum_d += write_d_s_res(s_res, size);
 			}
+			if (flags.fl_m != 0 && flags.fl_z != 0)
+			{
+				sum_d += write_d_s_res(s_res, size);
+				sum_d += over_width(flags.val_w, size);
+			}
 		}
 	}
 	return (sum_d);

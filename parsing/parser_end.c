@@ -10,7 +10,7 @@ int	parser_end(char *format, va_list args, int *i)
 	while (format[*i] != '%')
 	{
 		if (format[*i] == '\0')
-			return (0);
+			return (res);
 		write (1, &format[*i], 1);
 		res++;
 		*i = *i + 1;

@@ -1,7 +1,7 @@
 processor_srcs := processor.c processor_type.c
 SRCS_PR := $(addprefix processor/, $(processor_srcs))
 
-parsing_srcs := parser_dot.c new_parser_flags.c parser_width.c parser_zero.c parser_minus.c init_flag.c write_before_perc.c parser_end.c
+parsing_srcs := parser_dot.c new_parser_flags.c parser_width.c parser_zero.c init_flag.c write_before_perc.c parser_end.c
 SRCS_P := $(addprefix parsing/, $(parsing_srcs))
 
 types_srcs := c.c perc.c

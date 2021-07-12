@@ -57,7 +57,7 @@ static int	minus(t_flags flags, char *s_res, int size)
 	else
 	{
 		sum_s += over_width(flags.val_w, size);
-		sum_s += write_s(flags.val_p - 1, s_res);
+		sum_s += write_s(size, s_res);
 	}
 	return (sum_s);
 }

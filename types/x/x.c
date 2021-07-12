@@ -6,11 +6,15 @@ static int	x_only_p(t_flags flags, int size, int chislo)
 
 	sum_x = 0;
 	if (size >= flags.val_p)
-		sum_x += from_d_to_x(chislo);
+	{
+		from_d_to_x(chislo);
+		sum_x += size;
+	}
 	if (size < flags.val_p)
 	{
 		sum_x += over_percision(flags.val_p, size);
-		sum_x += from_d_to_x(chislo);
+		from_d_to_x(chislo);
+		sum_x += size;
 	}
 	return (sum_x);
 }
@@ -21,28 +25,35 @@ static int	x_only_w(t_flags flags, int size, int chislo)
 
 	sum_x = 0;
 	if (size >= flags.val_w)
-		sum_x += from_d_to_x(chislo);
+	{
+		from_d_to_x(chislo);
+		sum_x += size;
+	}
 	if (size < flags.val_w)
 	{
 		if (flags.fl_z != 0 && flags.fl_m == 0)
 		{
 			sum_x += over_width_zero(flags.val_w, size);
-			sum_x += from_d_to_x(chislo);
+			from_d_to_x(chislo);
+			sum_x += size;
 		}
 		if (flags.fl_m != 0 && flags.fl_z == 0)
 		{
-			sum_x += from_d_to_x(chislo);
+			from_d_to_x(chislo);
+			sum_x += size;
 			sum_x += over_width(flags.val_w, size);
 		}
 		if (flags.fl_m == 0 && flags.fl_z == 0)
 		{
 			sum_x += over_width(flags.val_w, size);
-			sum_x += from_d_to_x(chislo);
+			from_d_to_x(chislo);
+			sum_x += size;
 		}
 		if (flags.fl_m != 0 && flags.fl_z != 0)
 		{
 			sum_x += over_width(flags.val_w, size);
-			sum_x += from_d_to_x(chislo);
+			from_d_to_x(chislo);
+			sum_x += size;
 		}
 	}
 	return (sum_x);
@@ -78,7 +89,10 @@ int	x(t_flags flags, va_list args)
 	size = size_of_x(chislo);
 
 	if (flags.fl_w == 0 && flags.fl_p == 0)
-		sum_x += from_d_to_x(chislo);
+	{
+		from_d_to_x(chislo);
+		sum_x += size;
+	}
 	if (flags.fl_p == 1 && flags.val_p == 0)
 	{
 		sum_x += x_fp_is_vp_zero(flags, size);

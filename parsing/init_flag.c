@@ -9,4 +9,5 @@ void	init_flag(t_flags *flags)
 	flags->val_p = 0;
 	flags->fl_m = 0;
 	flags->fl_z = 0;
+	flags->f_star = 0;
 }

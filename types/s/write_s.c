@@ -8,10 +8,8 @@ int	write_s(int p, char *s_res)
 	i_dif_arg = 0;
 	if (s_res == NULL)
 	{
-		s_null = (char *)malloc(sizeof(char) * 6);
 		s_null = "(null)";
 		write (1, s_null, 6);
-		free(s_null); //
 		return (6);
 	}
 	while (i_dif_arg < p)

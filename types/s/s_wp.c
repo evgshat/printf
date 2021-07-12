@@ -39,7 +39,7 @@ int	s_w_and_p(t_flags flags, char *s_res, int size)
 		sum_s += s_less_wp(flags, s_res, size);
 	if (flags.val_w >= size && flags.val_p < size)
 		sum_s += s_over_w(flags, s_res, size);
-	if (flags.val_w > size && flags.val_p > size)
+	if (flags.val_w >= size && flags.val_p >= size) //
 		sum_s += s_over_wp(flags, s_res, size);
 	return (sum_s);
 }

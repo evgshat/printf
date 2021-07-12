@@ -2,7 +2,7 @@
 
 int	write_before_perc(const char *format, int *i)
 {
-	int	res = 0;
+	int	res;
 
 	res = 0;
 	if (format[*i] == '\0')
