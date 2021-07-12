@@ -63,7 +63,7 @@ int	d(t_flags flags, va_list args)
 	sum_d = 0;
 	s_res = res_for_d(args, &size);
 	sum_d += d_w_zero_p_zero(flags, s_res, size);
-	if (flags.fl_p == 1 && flags.val_p == 0 && flags.fl_w == 0)
+	if (flags.fl_p == 1 && flags.val_p == 0 && flags.fl_w == 0 && *s_res == '0')
 	{
 		sum_d += d_fp_is_vp_zero(flags, size);
 		free(s_res);
