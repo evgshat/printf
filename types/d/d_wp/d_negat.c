@@ -65,6 +65,25 @@ static int	d_negat_over_w(t_flags flags, int size, char *s_res)
 	return (sum_d);
 }
 
+static int	d_negat_two(t_flags flags, int size, char *s_res)
+{
+	int	sum_d;
+
+	sum_d = 0;
+	if (flags.val_w > (size - 1) && flags.val_p > (size - 1))
+	{
+		sum_d += d_negat_over_w_p(flags, (size - 1), s_res);
+		sum_d += d_negat_over_p(flags, (size - 1), s_res);
+	}
+	if (flags.val_w < (size - 1) && flags.val_p > (size - 1))
+	{
+		sum_d += write_d_ch('-');
+		sum_d += over_percision(flags.val_p, (size - 1));
+		sum_d += write_d_s_res(s_res, (size - 1));
+	}
+	return (sum_d);
+}
+
 int	d_negat(t_flags flags, int size, char *s_res)
 {
 	int	sum_d;
@@ -83,17 +102,6 @@ int	d_negat(t_flags flags, int size, char *s_res)
 	}
 	if (flags.val_w > (size - 1) && flags.val_p <= (size - 1))
 		sum_d += d_negat_over_w(flags, (size - 1), s_res);
-	if (flags.val_w > (size - 1) && flags.val_p > (size - 1))
-	{
-		sum_d += d_negat_over_w_p(flags, (size - 1), s_res);
-		sum_d += d_negat_over_p(flags, (size - 1), s_res);
-	}
-	if (flags.val_w < (size - 1) && flags.val_p > (size - 1))
-	{
-		sum_d += write_d_ch('-');
-		sum_d += over_percision(flags.val_p, (size - 1));
-		sum_d += write_d_s_res(s_res, (size - 1));
-	}
+	sum_d += d_negat_two(flags, size, s_res);
 	return (sum_d);
 }
-

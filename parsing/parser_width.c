@@ -1,5 +1,15 @@
 #include "../ft_printf.h"
 
+static void	star(t_flags *flags, va_list args)
+{
+	flags->val_w = va_arg(args, int);
+	if (flags->val_w < 0)
+	{
+		flags->val_w = flags->val_w * (-1);
+		flags->fl_m = 1;
+	}
+}
+
 void	parser_width(t_flags *flags, char *format, int *i, va_list args)
 {
 	char	*value_width;
@@ -10,12 +20,7 @@ void	parser_width(t_flags *flags, char *format, int *i, va_list args)
 	value_width = (char *)malloc(sizeof(char) * 20);
 	if (format[*i] == '*')
 	{
-		flags->val_w = va_arg(args, int);
-		if (flags->val_w < 0)
-		{
-			flags->val_w = flags->val_w * (-1);
-			flags->fl_m = 1;
-		}
+		star(flags, args);
 		free (value_width);
 		return ;
 	}

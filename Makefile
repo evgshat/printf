@@ -16,40 +16,36 @@ SRCS_T_d_wp := $(addprefix types/d/d_wp/, $(types_srcs_d_wp))
 types_srcs_d_w := d_only_w.c
 SRCS_T_d_w := $(addprefix types/d/d_w/, $(types_srcs_d_w))
 
-types_srcs_x := x_wp.c x.c from_d_to_x.c size_of_x.c
+types_srcs_x := x_wp.c x.c from_d_to_x.c size_of_x.c x_posit.c x_posit_over_w.c x_only_w.c
 SRCS_T_x := $(addprefix types/x/, $(types_srcs_x))
 
-types_srcs_big_x := big_x_wp.c big_x.c from_d_to_big_x.c
+types_srcs_big_x := big_x_wp.c big_x.c from_d_to_big_x.c big_x_only_w.c big_x_posit_over_w.c big_x_posit.c
 SRCS_T_big_x := $(addprefix types/big_x/, $(types_srcs_big_x))
 
-types_srcs_u := u.c res_for_u.c u_only_w.c u_w_and_p.c
+types_srcs_u := u.c res_for_u.c u_only_w.c u_w_and_p.c u_posit_over_w.c
 SRCS_T_u := $(addprefix types/u/, $(types_srcs_u))
 
 types_srcs_s :=  s.c write_s.c write_s_null.c write_for_s.c res_for_s.c s_wp.c s_less_wp.c s_over_w.c s_over_wp.c
 SRCS_T_s := $(addprefix types/s/, $(types_srcs_s))
 
-types_srcs_p :=  p.c from_d_to_p.c p_wp.c size_of_p.c
+types_srcs_p :=  p.c from_d_to_p.c p_wp.c size_of_p.c itoa_for_p.c
 SRCS_T_p := $(addprefix types/p/, $(types_srcs_p))
 
 dic_srcs := dictionary_from_d_to_big_x.c dictionary_from_d_to_x.c is_type.c
 SRCS_D := $(addprefix dictionaries/, $(dic_srcs))
 
-SRCS :=  ft_atoi.c \
-ft_itoa_unint.c \
-ft_itoa.c \
-ft_printf.c \
-ft_strjoin.c \
-ft_strlen.c \
-over_percision.c \
-over_width_zero.c \
-over_width.c \
-sum.c \
-ft_isdigit.c \
-itoa_for_p.c
+libft_srcs := ft_strlen.c ft_strjoin.c ft_itoa.c ft_itoa_unint.c ft_isdigit.c ft_atoi.c sum.c
+SRCS_lib := $(addprefix libft/, $(libft_srcs))
+
+gen_srcs := over_percision.c over_width_zero.c over_width.c
+SRCS_gen := $(addprefix types/general/, $(gen_srcs))
+
+SRCS := ft_printf.c
 
 OBJS = $(SRCS:.c=.o) $(SRCS_PR:.c=.o) $(SRCS_P:.c=.o) $(SRCS_T:.c=.o) $(SRCS_T_d:.c=.o) \
 $(SRCS_T_d_wp:.c=.o) $(SRCS_T_d_w:.c=.o) $(SRCS_T_x:.c=.o) $(SRCS_T_big_x:.c=.o) \
-$(SRCS_T_u:.c=.o) $(SRCS_T_s:.c=.o) $(SRCS_T_p:.c=.o) $(SRCS_D:.c=.o)
+$(SRCS_T_u:.c=.o) $(SRCS_T_s:.c=.o) $(SRCS_T_p:.c=.o) $(SRCS_D:.c=.o) $(SRCS_lib:.c=.o) \
+$(SRCS_gen:.c=.o)
 
 NAME = libftprintf.a
 

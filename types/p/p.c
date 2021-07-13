@@ -1,10 +1,5 @@
 #include "../../ft_printf.h"
 
-// static int	p_chislo_null(t_flags flags, int size, int chislo)
-// {
-
-// }
-
 static int	p_only_p(t_flags flags, int size, unsigned long long chislo)
 {
 	int	sum_p;
@@ -15,6 +10,24 @@ static int	p_only_p(t_flags flags, int size, unsigned long long chislo)
 	if (size < flags.val_p)
 	{
 		sum_p += over_percision(flags.val_p, size);
+		sum_p += from_d_to_p(chislo);
+	}
+	return (sum_p);
+}
+
+static int	p_only_w_two(t_flags flags, int size, unsigned long long chislo)
+{
+	int	sum_p;
+
+	sum_p = 0;
+	if (flags.fl_m == 0 && flags.fl_z == 0)
+	{
+		sum_p += over_width(flags.val_w, size);
+		sum_p += from_d_to_p(chislo);
+	}
+	if (flags.fl_m != 0 && flags.fl_z != 0)
+	{
+		sum_p += over_width(flags.val_w, size);
 		sum_p += from_d_to_p(chislo);
 	}
 	return (sum_p);
@@ -39,22 +52,12 @@ static int	p_only_w(t_flags flags, int size, unsigned long long chislo)
 			sum_p += from_d_to_p(chislo);
 			sum_p += over_width(flags.val_w, size);
 		}
-		if (flags.fl_m == 0 && flags.fl_z == 0)
-		{
-			sum_p += over_width(flags.val_w, size);
-			sum_p += from_d_to_p(chislo);
-		}
-		if (flags.fl_m != 0 && flags.fl_z != 0)
-		{
-			sum_p += over_width(flags.val_w, size);
-			sum_p += from_d_to_p(chislo);
-		}
+		sum_p += p_only_w_two(flags, size, chislo);
 	}
 	return (sum_p);
 }
 
-
-static int	p_fp_is_vp_zero(t_flags flags, int size) // есть точно такая же функция в d.c - вынести (d_fp_is_vp_zero)
+static int	p_fp_is_vp_zero(t_flags flags, int size)
 {
 	int	sum_p;
 

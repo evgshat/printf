@@ -82,7 +82,7 @@ int	s_less_wp(t_flags flags, char *s_res, int size)
 		if (flags.fl_m == 0)
 			sum_s += s_over_w_one(flags, s_res, size);
 		if (flags.fl_m != 0)
-		sum_s += s_over_w_two(flags, s_res, size);
+			sum_s += s_over_w_two(flags, s_res, size);
 	}
 	if (flags.val_w < flags.val_p)
 		sum_s += s_over_p(flags, s_res, size);

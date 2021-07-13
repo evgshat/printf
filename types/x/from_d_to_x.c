@@ -1,6 +1,6 @@
 #include "../../ft_printf.h"
 
-static int	less_sixsteen(int *int_chislo)
+static int	less_sixsteen(unsigned long long *int_chislo)
 {
 	char	*int_ch;
 	int		cnt_int_ch;
@@ -17,10 +17,10 @@ static int	less_sixsteen(int *int_chislo)
 
 int	from_d_to_x(unsigned long long chislo)
 {
-	int		ost;
-	int		int_chislo;
-	char	c_ost;
-	int		sum_d_to_big_x;
+	int						ost;
+	unsigned long long		int_chislo;
+	char					c_ost;
+	int						sum_d_to_big_x;
 
 	sum_d_to_big_x = 0;
 	if (chislo < 16)

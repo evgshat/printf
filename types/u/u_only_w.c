@@ -10,6 +10,24 @@ static int	u_w_over(t_flags flags, int size, char *s_res)
 	return (sum_u);
 }
 
+static int	u_only_two(t_flags flags, char *s_res, int size)
+{
+	int	sum_u;
+
+	sum_u = 0;
+	if (flags.fl_m == 0 && flags.fl_z == 0)
+	{
+		sum_u += over_width(flags.val_w, size);
+		sum_u += write(1, s_res, size);
+	}
+	if (flags.fl_m != 0 && flags.fl_z != 0)
+	{
+		sum_u += write(1, s_res, size);
+		sum_u += over_width(flags.val_w, size);
+	}
+	return (sum_u);
+}
+
 int	u_only_w(t_flags flags, char *s_res, int size)
 {
 	int	sum_u;
@@ -28,16 +46,7 @@ int	u_only_w(t_flags flags, char *s_res, int size)
 				sum_u += write(1, s_res, size);
 				sum_u += over_width(flags.val_w, size);
 			}
-			if (flags.fl_m == 0 && flags.fl_z == 0)
-			{
-				sum_u += over_width(flags.val_w, size);
-				sum_u += write(1, s_res, size);
-			}
-			if (flags.fl_m != 0 && flags.fl_z != 0)
-			{
-				sum_u += write(1, s_res, size);
-				sum_u += over_width(flags.val_w, size);
-			}
+			sum_u += u_only_two(flags, s_res, size);
 		}
 	}
 	return (sum_u);

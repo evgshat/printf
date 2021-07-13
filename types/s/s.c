@@ -12,7 +12,8 @@ static int	s_only_p(t_flags flags, char *s_res, int size)
 		if (s_res == NULL)
 		{
 			if (flags.val_p < 0)
-				sum_s += write_s_null(s_res, size, (6 + (flags.val_p*(-1))), 0); //
+				sum_s += write_s_null(s_res, size,
+						(6 + (flags.val_p * (-1))), 0);
 			sum_s += write_s_null(s_res, size, flags.val_p, flags.fl_p);
 		}
 		else

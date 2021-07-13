@@ -3,7 +3,7 @@
 int	size_of_p(unsigned long long res)
 {
 	int						size;
-	unsigned long long 		res_copy;
+	unsigned long long		res_copy;
 
 	size = 0;
 	res_copy = res;
